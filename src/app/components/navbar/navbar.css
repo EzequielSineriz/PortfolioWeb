@@ -1,0 +1,207 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.hero-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #f3f4f6;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.hero-description {
+  max-width: 320px;
+  line-height: 1.6;
+  color: #94a3b8;
+  font-size: 15px;
+  margin: 10px 0 0 0;
+}
+
+/* Menú de Navegación Lateral */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+/* La línea indicadora gris por defecto */
+.nav-line {
+  width: 30px;
+  height: 1px;
+  background-color: #64748b;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-text {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================
+   EFECTOS HOVER Y ACTIVE (Línea se estira y se vuelve Cian)
+   ========================================================== */
+
+/* Comportamiento al pasar el cursor */
+.nav-link:hover .nav-line {
+  width: 60px;
+  background-color: #00f2fe; /* Brillo Neón */
+}
+
+.nav-link:hover .nav-text {
+  color: #00f2fe;
+}
+
+/* Clase para cuando la sección esté activa (scroll o click) */
+.nav-link.active .nav-line {
+  width: 60px;
+  background-color: #00f2fe;
+}
+
+.nav-link.active .nav-text {
+  color: #f3f4f6;
+}
+
+/* Responsivo: Si la pantalla es chica, el menú se adapta mejor */
+@media (max-width: 768px) {
+  .hero {
+    gap: 30px;
+  }
+  .hero-title {
+    font-size: 36px;
+  }
+  .nav-menu {
+    margin-top: 30px;
+  }
+}
+
+
+/* Alineación del botón en la lista del Nav */
+.nav-download-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: all 0.3s ease;
+    margin-top: 15px; /* Separación del ítem de Contacto */
+}
+
+/* Estilo del SVG personalizado */
+.svg-download-icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #e5e5eb; /* Color base original de tus links */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease, filter 0.3s ease;
+}
+
+/* Texto del botón */
+.nav-download-btn .btn-text {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #e5e5eb;
+    margin-left: 12px; /* Espacio entre el SVG y el texto */
+    transition: color 0.3s ease;
+}
+
+/* Efecto Hover estilo Neón de Alta Tecnología */
+.nav-download-btn:hover .svg-download-icon {
+    stroke: #00f3ff; /* Color Cian Neón */
+    filter: drop-shadow(0 0 6px #00f3ff); /* Destello Neón */
+}
+
+.nav-download-btn:hover .btn-text {
+    color: #00f3ff;
+    text-shadow: 0 0 6px #00f3ff;
+}
+
+/* Reset de focus por accesibilidad */
+.nav-download-btn:focus {
+    outline: none;
+}
+
+
+.lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem; /* Súper pequeño y discreto */
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Botones de idioma individuales */
+.lang-selector button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.35); /* Opaco por defecto */
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.lang-selector button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Barra divisoria intermedia */
+.lang-divider {
+  color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+/* ESTADO ACTIVO: Glow Neon sutil en el seleccionado */
+.lang-selector button.active {
+  color: #00f2fe;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+  margin: 0 4px; /* Espacio extra a los lados del activo */
+}
+
+/* Estilo base para el nombre de abajo para referencia */
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f3f4f6;
+}

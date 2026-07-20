@@ -1,0 +1,37 @@
+<div id="spotlight"></div>
+<div class="portfolio">
+  <div class="container">
+
+    <!-- LADO IZQUIERDO -->
+    <aside class="sidebar">
+      <!-- Le pasamos la sección activa al Navbar -->
+      <app-navbar [currentSection]="activeSection"></app-navbar>
+    </aside>
+
+    <!-- LADO DERECHO -->
+    <!-- appScrollSpy va a vigilar todas las etiquetas <section> adentro de <main> -->
+    <main class="content" appScrollSpy [spiedTags]="['section']" (sectionChange)="onSectionChange($event)">
+
+      <section id="about">
+        <app-about></app-about>
+      </section>
+
+      <section id="experience">
+        <!-- Próximamente -->
+      </section>
+
+      <section id="projects">
+        <app-projects></app-projects>
+      </section>
+
+      <section id="studies">
+        <app-studies></app-studies>
+      </section>
+
+      <section id="contact">
+        <app-contact></app-contact>
+      </section>
+
+    </main>
+  </div>
+</div>

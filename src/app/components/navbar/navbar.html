@@ -1,0 +1,53 @@
+<div class="hero">
+  <div class="hero-header">
+
+    <!-- INSERTAR AQUÍ EL AVATAR -->
+    <!-- Asegúrate de que la ruta en 'src' apunte a donde guardaste tu imagen -->
+    <img src="assets/img/avatar.png" alt="Avatar de Ezequiel Siñeriz" class="hero-avatar">
+    <!-- -------------------------- -->
+
+    <!-- Selector de Idioma-->
+    <div class="lang-selector" >
+      <button [class.active]="currentLang() === 'es'" (click)="changeLanguage('es')">Español</button>
+      <span class="lang-divider">|</span>
+      <button [class.active]="currentLang() === 'en'" (click)="changeLanguage('en')">English</button>
+    </div>
+
+    <h1 class="hero-title">Ezequiel Siñeriz</h1>
+    <h2 class="hero-subtitle">Full Stack Developer</h2>
+    <p class="hero-description">
+      Soy un desarrollador Full Stack dedicado a crear aplicaciones web modernas, escalables y seguras.
+    </p> <!-- Faltaba cerrar esta etiqueta </p> en tu código original -->
+  </div> <!-- Faltaba cerrar este div class="hero-header" -->
+
+  <nav class="nav-menu">
+    <!-- Tu menú de navegación permanece igual -->
+    <a href="#about" class="nav-link" [class.active]="currentSection === 'about'">
+      <span class="nav-line"></span>
+      <span class="nav-text">Sobre Mi</span>
+    </a>
+    <a href="#projects" class="nav-link" [class.active]="currentSection === 'projects'">
+      <span class="nav-line"></span>
+      <span class="nav-text">Proyectos</span>
+    </a>
+    <a href="#studies" class="nav-link" [class.active]="currentSection === 'studies'">
+      <span class="nav-line"></span>
+      <span class="nav-text">Estudios</span>
+    </a>
+    <a href="#contact" class="nav-link" [class.active]="currentSection === 'contact'">
+      <span class="nav-line"></span>
+      <span class="nav-text">Contacto</span>
+    </a>
+
+    <button class="nav-download-btn" (click)="descargarCV()">
+      <!-- Tu SVG con clases de estilos añadidas -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-download-icon">
+        <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/>
+        <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+        <path d="M12 18v-6"/>
+        <path d="m9 15 3 3 3-3"/>
+      </svg>
+      <span class="btn-text">Descargar CV</span>
+    </button>
+  </nav>
+</div>

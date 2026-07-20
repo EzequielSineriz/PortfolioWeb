@@ -1,0 +1,57 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+/* Contenedor del encabezado de la sección */
+.projects-section-header {
+    width: 100%;
+    margin-bottom: 40px;      /* Espacio antes de que empiecen las tarjetas de proyectos */
+    margin-top: 20px;         /* Separación respecto a la pasarela de iconos superior */
+    text-align: left;         /* Alineación a la izquierda para seguir tu diseño actual */
+    box-sizing: border-box;
+}
+
+/* El título principal con degradado elegante */
+.projects-main-title {
+    font-size: 2rem;          /* Tamaño destacado pero equilibrado */
+    font-weight: 800;         /* Letra imponente y fuerte */
+    text-transform: uppercase;/* Todo en mayúsculas para un look más profesional y tech */
+    letter-spacing: 0.05em;   /* Espaciado sutil entre letras */
+    margin: 0 0 12px 0;       /* Margen inferior antes de la línea */
+
+    /* Efecto de texto degradado moderno */
+    background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Línea decorativa estilo Cyberpunk/Neón */
+.title-underline {
+    display: block;
+    width: 80px;              /* Línea corta elegante */
+    height: 3px;              /* Grosor de la línea */
+    background: #00f3ff;      /* Tu color Cian Neón */
+    border-radius: 2px;
+
+    /* Destello neón sutil para que haga juego con el resto de la web */
+    box-shadow: 0 0 10px #00f3ff, 0 0 20px rgba(0, 243, 255, 0.4);
+
+    transition: width 0.4s ease; /* Efecto interactivo por si pasan el mouse */
+}
+
+/* Efecto interactivo: la línea se expande cuando el usuario pasa el mouse por la zona del título */
+.projects-section-header:hover .title-underline {
+    width: 150px;
+}

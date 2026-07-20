@@ -1,0 +1,358 @@
+:host {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================
+   1. TARJETA BASE (VISTA PRELIMINAR)
+   ========================================================== */
+.project-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.25rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .project-card { grid-template-columns: 200px 1fr; }
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 10px 30px -15px rgba(0, 242, 254, 0.15);
+}
+
+/* Contenedor de Imagen de la Tarjeta */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Mantiene la consistencia de grilla en las cards principales */
+  transition: transform 0.4s ease;
+}
+
+/* Badge flotante 'Ver Detalles' */
+.more-details-badge {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 25, 47, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.more-details-badge span {
+  color: #00f2fe;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .more-details-badge { opacity: 1; }
+.project-card:hover .more-details-badge span { transform: translateY(0); }
+.project-card:hover .card-image { transform: scale(1.05); }
+
+/* Placeholder si la imagen falla */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+}
+
+.code-icon {
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: rgba(0, 242, 254, 0.6);
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* Textos de las Tarjetas */
+.card-info { display: flex; flex-direction: column; justify-content: space-between; }
+.card-header { margin-bottom: 0.5rem; }
+.card-title { font-size: 1.25rem; color: #f3f4f6; margin: 0 0 4px 0; font-weight: 600; transition: color 0.3s ease; }
+.project-card:hover .card-title { color: #00f2fe; }
+.card-subtitle { font-size: 0.85rem; color: rgba(255, 255, 255, 0.4); display: block; }
+.card-description { font-size: 0.95rem; color: #9ca3af; line-height: 1.5; margin: 0 0 1rem 0; }
+.card-stack, .modal-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tech-badge { background: rgba(0, 242, 254, 0.06); color: #00f2fe; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; border: 1px solid rgba(0, 242, 254, 0.15); }
+
+
+/* ==========================================================
+   2. ESTILOS DEL MODAL (GLASSMORPHIC PREMIUM)
+   ========================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 18, 36, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-container {
+  position: relative;
+  background: #0b1528;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  max-width: 950px;
+  width: 100%;
+  max-height: 85vh; /* Bajamos un toque para asegurar margen en notebooks */
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .modal-container {
+    grid-template-columns: 1.2fr 1fr;
+    height: 550px; /* Forzamos una altura física límite al contenedor */
+    grid-template-rows: 100%; /* Obliga a las columnas a medir exactamente 550px */
+  }
+}
+
+/* Botón Cerrar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.close-btn:hover { color: #00f2fe; }
+
+/* ==========================================================
+   3. SOLUCIÓN COMPLETA AL CARRUSEL Y FOTOS DEFORMADAS
+   ========================================================== */
+.modal-gallery {
+  background: #040810; /* Fondo oscuro puro para que resalten las capturas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 280px; /* Altura en móviles */
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .modal-gallery {
+    height: 100%;
+  }
+}
+
+/* El visor contenedor estricto */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px; /* Margen interno para que la imagen no toque los bordes rígidos */
+  box-sizing: border-box;
+}
+
+/* LA REGLA CLAVE: Centra y evita roturas de aspect-ratio */
+.carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Encaja la foto entera y proporcionalmente sin importar su forma */
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Flechas Flotantes del Carrusel */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #00f2fe;
+  font-size: 1.8rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+.carousel-arrow:hover {
+  background: #00f2fe;
+  color: #050b14;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+.carousel-arrow.prev { left: 15px; }
+.carousel-arrow.next { right: 15px; }
+
+/* Puntitos de Navegación Inferiores */
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dot.active {
+  background: #00f2fe;
+  width: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #00f2fe;
+}
+
+
+/* ==========================================================
+   4. CONTENIDO DERECHO DEL MODAL
+   ========================================================== */
+.modal-content {
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa el alto total disponible de su columna */
+  box-sizing: border-box;
+  overflow: hidden; /* Bloquea el scroll general de la columna */
+}
+
+.modal-header h2 { font-size: 1.6rem; color: #f3f4f6; margin: 0; font-weight: 700; }
+.modal-header h3 { font-size: 0.95rem; color: #00f2fe; margin: 5px 0 0 0; font-weight: 500; }
+
+.modal-header, .modal-body {
+  width: 100%;
+}
+
+.modal-body {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1; /* Esto empuja al footer hacia abajo del todo */
+  overflow-y: auto; /* Si el texto es largo, solo scrollea esta sección */
+  padding-right: 8px;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.3);
+}
+
+.detail-section h4 {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.detail-section p { font-size: 0.9rem; color: #9ca3af; margin: 0; line-height: 1.5; }
+/* Listas de Desafíos */
+.detail-section ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+.detail-section li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* Botones Inferiores (¡AHORA SIEMPRE VISIBLES ABAJO!) */
+.modal-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  flex-shrink: 0; /* Evita que los botones se achiquen o aplasten */
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.btn-icon { width: 18px; height: 18px; fill: currentColor; }
+
+.btn-github {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.btn-github:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+.btn-demo {
+  background: #04d77c;
+  color: #050b14;
+  border: none;
+}
+.btn-demo:hover {
+  background: #6fed8c;
+  box-shadow: 0 0 15px rgba(4, 215, 124, 0.4);
+}

@@ -1,0 +1,111 @@
+/* Contenedor Principal */
+.about-section {
+  padding: 0rem 1rem;
+}
+
+/* Título Premium con Subrayado Neón */
+.section-title {
+  font-size: 1.5rem;
+  color: #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Línea decorativa inferior estilo cian/neón */
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #00f2fe, rgba(0, 242, 254, 0));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Efecto sutil si se interactúa en la sección */
+.about-section:hover .section-title::after {
+  width: 60px;
+}
+
+/* Párrafo Introductorio Destacado (Lead) */
+.lead-text {
+  font-size: 17px;
+  color: #e2e8f0;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+/* Párrafos Estándar */
+.about-content p {
+  font-size: 15px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.about-content strong {
+  color: #00f2fe; /* Resalta las palabras clave en cian */
+  font-weight: 600;
+}
+
+/* Grilla para dividir conceptos técnicos y hacerlos scannables */
+.about-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .about-meta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Cajas contenedoras internas con sutil toque Glassmorphic */
+.meta-box {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.meta-box:hover {
+  border-color: rgba(0, 242, 254, 0.15);
+}
+
+.meta-box h3 {
+  color: #f3f4f6;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-icon {
+  font-size: 16px;
+}
+
+.meta-box p {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Párrafo de Cierre */
+.closure-text {
+  font-style: italic;
+  border-left: 2px solid rgba(0, 242, 254, 0.3);
+  padding-left: 1rem;
+  color: #cbd5e1 !important;
+}

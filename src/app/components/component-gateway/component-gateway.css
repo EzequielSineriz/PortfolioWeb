@@ -1,0 +1,75 @@
+/* Contenedor principal de la pasarela */
+.tech-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+    margin: 30px 0 60px 0; /* Espaciado arriba y abajo */
+    background: transparent;
+    display: flex;
+    align-items: center;
+
+    /* Efecto difuminado elegante a los extremos izquierdo y derecho */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+/* El riel que contiene los grupos y se desplaza */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: scrollMarquee 25s linear infinite; /* Ajusta los segundos si querés que vaya más rápido o lento */
+}
+
+/* Cada grupo de íconos */
+.marquee-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 80px; /* Distancia entre íconos */
+    padding-right: 80px; /* Mismo valor que el gap para mantener la simetría */
+}
+
+/* Estilo general para cada SVG */
+.tech-icon {
+    width: 50px;
+    height: 50px;
+    fill: none;
+    stroke: #64748b; /* Color apagado por defecto para simular segundo plano */
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* --- Efectos hover personalizados con tus colores neón --- */
+.tech-icon:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px var(--hover-color, #00f3ff));
+    stroke: var(--hover-color, #00f3ff);
+}
+
+/* Asignación de colores específicos al pasar el mouse */
+.angular-icon { --hover-color: #ff0055; } /* Rojo/Rosa Angular */
+.java-icon { --hover-color: #ea580c; fill: #ea580c; } /* Naranja Java */
+.spring-icon { --hover-color: #4ade80; } /* Verde Spring */
+.nest-icon { --hover-color: #e02424; } /* Rojo NestJS */
+.docker-icon { --hover-color: #38bdf8; } /* Celeste Docker */
+.postman-icon { --hover-color: #f97316; } /* Naranja Postman */
+
+
+/* ANIMACIÓN DEL DESPLAZAMIENTO */
+@keyframes scrollMarquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Se desplaza exactamente la mitad (un grupo completo) */
+    }
+}
+
+/* Pausar la pasarela cuando el usuario pasa el mouse por encima */
+.tech-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}

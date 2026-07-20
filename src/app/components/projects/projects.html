@@ -1,0 +1,20 @@
+
+<div class="projects" >
+  <div class="projects-section-header">
+  <h2 class="projects-main-title">
+    Proyectos Desarrollados
+  </h2>
+  <span class="title-underline"></span>
+</div>
+
+  @for(project of projects; track project.id){
+
+    <app-projects-card
+            [project]="project">
+        </app-projects-card>
+
+      }
+</div>
+
+
+
